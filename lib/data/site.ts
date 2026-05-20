@@ -1,7 +1,8 @@
 export const site = {
-  name: 'John Joshua Mamawag',
+  name: 'Joshua Mamawag',
   title: 'Full Stack Engineer • MERN • Next.js • TailwindCSS',
-  tagline: 'Building scalable web applications with modern technologies',
+  tagline:
+    'Transforming applications with innovative technologies. MERN • Next.js',
   email: 'jjjmdev@gmail.com',
   location: 'Manila, Philippines',
   availability: 'available',
@@ -16,4 +17,5 @@ export const site = {
     { label: 'Experience', href: '/experience' },
     { label: 'Blog', href: '/blog' },
   ],
+  stats: [{ value: 2, suffix: '+', label: 'Projects Shipped' }],
 } as const

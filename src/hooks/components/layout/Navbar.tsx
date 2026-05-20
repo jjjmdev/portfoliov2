@@ -9,7 +9,7 @@ import NavLink from './NavLink'
 import MobileNav from './MobileNav'
 import AvailabilityChip from '../ui/AvailabilityChip'
 
-export default function Navbar({ className }: { className: string }) {
+export default function Navbar({ className }: { className?: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [visible, setVisible] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
