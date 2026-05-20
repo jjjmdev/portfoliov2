@@ -1,5 +1,6 @@
 'use client'
 
+import { gsap } from 'gsap'
 import {
   motion,
   useMotionTemplate,
@@ -9,13 +10,14 @@ import {
   useTransform,
 } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { site } from '@/lib/data/site'
 import HeroTag from './HeroTag'
 import HeroHeading from './HeroHeading'
 import HeroTagline from './HeroTagline'
 import HeroCtas from './HeroCtas'
 import HeroStats from './HeroStats'
+import ensureGsapPlugins from '@/lib/gsap'
 
 const PARTICLES: {
   x: string
@@ -36,13 +38,16 @@ export default function HeroSection({ className }: { className?: string }) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const photoPanelRef = useRef<HTMLDivElement>(null)
+
   const ambientRef = useRef<HTMLDivElement>(null)
+  const photoImageRef = useRef<HTMLDivElement>(null)
   const tagRef = useRef<HTMLDivElement>(null)
   const headingRef = useRef<HTMLDivElement>(null)
   const taglineRef = useRef<HTMLDivElement>(null)
   const ctasRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
-  const photoImageRef = useRef<HTMLDivElement>(null)
+
+  const prefersReducedMotion = useReducedMotion()
 
   // --- Cursor Glow ---
   const rawX = useMotionValue(30)
@@ -57,6 +62,65 @@ export default function HeroSection({ className }: { className?: string }) {
     rawX.set(((e.clientX - rect.left) / rect.width) * 100)
     rawY.set(((e.clientY - rect.top) / rect.height) * 100)
   }
+
+  // --- GSAP ---
+  useLayoutEffect(() => {
+    if (prefersReducedMotion) return () => {}
+
+    ensureGsapPlugins()
+
+    const section = sectionRef.current
+    if (!section) return () => {}
+
+    // Guard: All entrance refs must be present
+    const entranceTargets = [
+      // Left Side
+      tagRef.current,
+      headingRef.current,
+      taglineRef.current,
+      ctasRef.current,
+      statsRef.current,
+      // TODO: Right Side
+    ]
+
+    if (entranceTargets.some((el) => !el)) return () => {}
+
+    const ctx = gsap.context(() => {
+      // Entrance Animation. Runs on mount
+      gsap.set(
+        [
+          tagRef.current,
+          headingRef.current,
+          taglineRef.current,
+          ctasRef.current,
+        ],
+        { opacity: 0, y: 32, willChange: 'transform, opacity' },
+      )
+      gsap.set(statsRef.current, {
+        opacity: 0,
+        y: 20,
+        willChange: 'transform, opacity',
+      })
+      // TODO: Right Side
+
+      const entrance = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        delay: 0.08,
+      })
+
+      entrance
+        // Left side
+        .to(tagRef.current, { opacity: 1, y: 0, duration: 0.55 }, 0.18)
+        .to(headingRef.current, { opacity: 1, y: 0, duration: 0.65 }, 0.3)
+        .to(taglineRef.current, { opacity: 1, y: 0, duration: 0.7 }, 0.45)
+        .to(ctasRef.current, { opacity: 1, y: 0, duration: 0.5 }, 0.56)
+        .to(statsRef.current, { opacity: 1, y: 0, duration: 0.5 }, 0.68)
+    }, section)
+
+    return () => {
+      ctx.revert()
+    }
+  }, [prefersReducedMotion])
 
   return (
     <section
