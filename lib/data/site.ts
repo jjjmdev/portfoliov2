@@ -15,7 +15,7 @@ export const site = {
     { label: 'About', href: '/about' },
     { label: 'Projects', href: '/projects' },
     { label: 'Experience', href: '/experience' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
   ],
   stats: [{ value: 2, suffix: '+', label: 'Projects Shipped' }],
 } as const

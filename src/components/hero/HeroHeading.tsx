@@ -1,4 +1,4 @@
-import useTypewriter from '../../use-typewriter'
+import useTypewriter from '@/src/hooks/use-typewriter'
 import { motion } from 'framer-motion'
 
 const ROLES = ['Full Stack Engineer', 'MERN Developer'] as const

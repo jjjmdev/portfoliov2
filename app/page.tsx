@@ -1,13 +1,11 @@
-import Footer from '@/src/hooks/components/layout/Footer'
-import Navbar from '@/src/hooks/components/layout/Navbar'
-import HeroSection from '@/src/hooks/components/hero/HeroSection'
-import ServicesSection from '@/src/hooks/components/sections/ServicesSection'
-import ProjectsSection from '@/src/hooks/components/sections/ProjectsSection'
-import AboutSection from '@/src/hooks/components/sections/AboutSection'
-import ExperienceSection from '@/src/hooks/components/sections/ExperienceSection'
-import SkillsSection from '@/src/hooks/components/sections/SkillsSection'
-import BlogSection from '@/src/hooks/components/sections/BlogSection'
-import ContactSection from '@/src/hooks/components/sections/ContactSection'
+import Footer from '@/src/components/layout/Footer'
+import Navbar from '@/src/components/layout/Navbar'
+import HeroSection from '@/src/components/hero/HeroSection'
+import ProjectsSection from '@/src/components/sections/ProjectsSection'
+import AboutSection from '@/src/components/sections/AboutSection'
+import ExperienceSection from '@/src/components/sections/ExperienceSection'
+import SkillsSection from '@/src/components/sections/SkillsSection'
+import ContactSection from '@/src/components/sections/ContactSection'
 
 export default function Home() {
   return (
@@ -15,12 +13,10 @@ export default function Home() {
       <Navbar />
       <main id='main-content'>
         <HeroSection />
-        <ServicesSection />
-        <ProjectsSection />
         <AboutSection />
+        <ProjectsSection />
         <ExperienceSection />
         <SkillsSection />
-        <BlogSection />
         <ContactSection />
       </main>
       <Footer />
