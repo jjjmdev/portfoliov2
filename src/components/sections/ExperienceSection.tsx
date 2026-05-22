@@ -5,6 +5,7 @@ import { fadeUp } from '@/config/animations'
 
 import { cn } from '@/lib/utils'
 import SectionEyebrow from '@/src/components/ui/SectionEyebrow'
+import SectionHeading from '@/src/components/ui/SectionHeading'
 
 export default function ExperienceSection({
   className,
@@ -28,6 +29,7 @@ export default function ExperienceSection({
             // 03_career
           </span>
           <SectionEyebrow number='03'>Career</SectionEyebrow>
+          <SectionHeading accent='Where'>Where I've built.</SectionHeading>
           This is the experience section.
         </motion.div>
       </div>

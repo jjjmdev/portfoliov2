@@ -5,6 +5,7 @@ import { fadeUp } from '@/config/animations'
 
 import { cn } from '@/lib/utils'
 import SectionEyebrow from '@/src/components/ui/SectionEyebrow'
+import SectionHeading from '@/src/components/ui/SectionHeading'
 
 export default function AboutSection({ className }: { className?: string }) {
   return (
@@ -21,6 +22,9 @@ export default function AboutSection({ className }: { className?: string }) {
             // 01_about
           </span>
           <SectionEyebrow number='01'>About</SectionEyebrow>
+          <SectionHeading accent='build'>
+            I design, build, and ship.
+          </SectionHeading>
           This is the about section.
         </motion.div>
       </div>
